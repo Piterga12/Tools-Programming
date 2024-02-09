@@ -58,13 +58,86 @@ namespace MyTools
                 }
             }
 
+            //Create Root Folder
             string assetPath = Application.dataPath;
             string rootPath = assetPath + "/" + gameName;
 
-            Directory.CreateDirectory(rootPath);
-            AssetDatabase.Refresh();
+            DirectoryInfo rootInfo = Directory.CreateDirectory(rootPath);
 
+            //Create sub Directories
+            if (!rootInfo.Exists)
+            {
+                return;
+            }
+            CreateSubFolders(rootPath);
+
+            AssetDatabase.Refresh();
             CloseWindow();
+        }
+
+        void CreateSubFolders(string rootPath)
+        {
+            DirectoryInfo rootInfo = null;
+            List<string> folderNames = new List<string>();
+
+            //ART FOLDERS
+            rootInfo = Directory.CreateDirectory(rootPath + "/Art");
+            if (rootInfo.Exists)
+            {
+                folderNames.Clear();
+                folderNames.Add("Animation");
+                folderNames.Add("Objects");
+                folderNames.Add("Materials");
+                folderNames.Add("Prefabs");
+
+                CreateFolders(rootPath + "/Art", folderNames);
+            }
+
+            //CODE FOLDERS
+            rootInfo = Directory.CreateDirectory(rootPath + "/Code");
+            if (rootInfo.Exists)
+            {
+                folderNames.Clear();
+                folderNames.Add("Editor");
+                folderNames.Add("Scripts");
+                folderNames.Add("Shaders");
+
+                CreateFolders(rootPath + "/Code", folderNames);
+            }
+
+            //RESOURCE FOLDERS
+            rootInfo = Directory.CreateDirectory(rootPath + "/Resources");
+            if (rootInfo.Exists)
+            {
+                folderNames.Clear();
+                folderNames.Add("Characters");
+                folderNames.Add("Managers");
+                folderNames.Add("Props");
+                folderNames.Add("UI");
+
+                CreateFolders(rootPath + "/Resources", folderNames);
+            }
+
+            //PREFABS FOLDERS
+            rootInfo = Directory.CreateDirectory(rootPath + "/Prefabs");
+            if (rootInfo.Exists)
+            {
+                folderNames.Clear();
+                folderNames.Add("Characters");
+                folderNames.Add("Props");
+                folderNames.Add("UI");
+
+                CreateFolders(rootPath + "/Prefabs", folderNames);
+            }
+        }
+
+        void CreateFolders(string aPath, List<string> folders)
+        {
+            foreach(string folder in folders)
+            {
+                Directory.CreateDirectory(aPath + "/" + folder);
+            }
+
         }
 
         void CloseWindow()
