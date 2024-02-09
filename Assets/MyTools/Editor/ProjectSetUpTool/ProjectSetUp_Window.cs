@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 
 namespace MyTools
 {
@@ -129,6 +131,15 @@ namespace MyTools
 
                 CreateFolders(rootPath + "/Prefabs", folderNames);
             }
+
+            //Create Scenes
+            DirectoryInfo sceneInfo = Directory.CreateDirectory(rootPath + "/Scenes");
+            if(sceneInfo.Exists)
+            {
+                CreateScene(rootPath + "/Scenes", gameName + "_Main");
+                CreateScene(rootPath + "/Scenes", gameName + "_Frontend");
+                CreateScene(rootPath + "/Scenes", gameName + "_StartUp");
+            }
         }
 
         void CreateFolders(string aPath, List<string> folders)
@@ -138,6 +149,12 @@ namespace MyTools
                 Directory.CreateDirectory(aPath + "/" + folder);
             }
 
+        }
+
+        void CreateScene(string aPath, string aName)
+        {
+            Scene currentScene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
+            EditorSceneManager.SaveScene(currentScene, aPath + "/" + aName + ".unity", true);
         }
 
         void CloseWindow()
