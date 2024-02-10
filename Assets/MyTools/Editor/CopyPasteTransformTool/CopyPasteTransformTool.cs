@@ -66,7 +66,7 @@ namespace MyTools
             GameObject[] selectedObjects = Selection.gameObjects;
             for (int i = 0; i < selectedObjects.Length; i++)
             {
-                selectedObjects[i].transform.Rotate((wantedObject.transform.rotation.eulerAngles));
+                selectedObjects[i].transform.rotation = wantedObject.transform.rotation;
             }
         }
 
@@ -96,7 +96,7 @@ namespace MyTools
             GameObject[] selectedObjects = Selection.gameObjects;
             for (int i = 0; i < selectedObjects.Length; i++)
             {
-                selectedObjects[i].transform.Rotate((wantedObject.transform.rotation.eulerAngles));
+                selectedObjects[i].transform.rotation = wantedObject.transform.rotation;
                 selectedObjects[i].transform.position = wantedObject.transform.position;
             }
         }
