@@ -21,5 +21,12 @@ namespace MyTools
             ObjectsReplace_tool.InitWindow();
         }
 
+        [MenuItem("MyTools/Level Tools/Rotate Tool")]
+        public static void RotateX90()
+        {
+            Debug.Log("Launching Rotate Tool");
+
+            RotateTool.InitWindow();
+        }
     }
 }
