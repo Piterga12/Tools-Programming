@@ -22,11 +22,19 @@ namespace MyTools
         }
 
         [MenuItem("MyTools/Level Tools/Rotate Tool")]
-        public static void RotateX90()
+        public static void InitRotateTool()
         {
             Debug.Log("Launching Rotate Tool");
 
             RotateTool.InitWindow();
+        }
+
+        [MenuItem("MyTools/Level Tools/Copy Paste Transform Tool")]
+        public static void InitCopyPasteTool()
+        {
+            Debug.Log("Launching Copy Paste Transform Tool");
+
+            CopyPasteTransformTool.InitWindow();
         }
     }
 }
